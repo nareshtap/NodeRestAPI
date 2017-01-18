@@ -1,5 +1,4 @@
 var mysql=require("mysql");
-
 var pool;
 
 exports.conn=function (){
