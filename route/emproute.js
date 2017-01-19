@@ -18,8 +18,8 @@ exports.emproute= function(app){
         data.updatemp(req.body,res);
     });
     app.post('/employee1/',function(req,res){
-       var Emp=new emp();
-       Emp.name=req.body.name;
+        var Emp=new emp();
+        Emp.name=req.body.name;
         Emp.location=req.body.location;
         Emp.save(function(err){
             if(err){
