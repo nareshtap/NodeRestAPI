@@ -1,7 +1,16 @@
 var data=require("../model/logintbl");
+var joi=require("joi");
+var validate=require("express-validation");
+var bodySchema = {
+    body: {
+        email: joi.string().required(),
+        password: joi.string().required()
+
+    }
+};
 
 exports.authenticate= function(app){
-    app.post('/',function(req,res){
+    app.post('/',validate(bodySchema),function(req,res){
         sess=req.session;
         data.authenticat(req.body,res);
     });
