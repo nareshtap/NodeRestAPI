@@ -6,7 +6,6 @@ var db=require("./db");
 var routes=require("./route/routes");
 var server=require('http').Server(app);
 
-var sess;
 app.use(session({secret: 'sess'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));

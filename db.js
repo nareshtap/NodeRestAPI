@@ -1,6 +1,7 @@
 var mysql=require("mysql");
 var pool;
 
+
 exports.conn=function (){
     this.pool=mysql.createPool({
         host:'localhost',
