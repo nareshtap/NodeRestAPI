@@ -16,7 +16,7 @@ var itemSchema = new mongoose.Schema({
     quantity: Number
 });
 
-/*
+
 exports.getByItemsId = function (id) {
     return item.statics.findById(id)
         .then(function (item) {
@@ -38,7 +38,7 @@ exports.getByOrderId = function (id) {
             return Promise.reject(err);
         });
 };
-*/
+
 exports.em = mongoose.model('employee', empschema);
 
 exports.order=mongoose.model('order', orderSchema);
