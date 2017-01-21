@@ -1,6 +1,7 @@
 var auth=require("./authenticate");
 var emp=require("./emproute");
 var coun=require("./counroute");
+var order=require("./ordroute");
 
 exports.route= function(app){
 
@@ -9,5 +10,7 @@ exports.route= function(app){
     emp.emproute(app);
 
     coun.counroute(app);
+
+    order.ordroute(app);
 
 };
