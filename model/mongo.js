@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/d');
+mongoose.connect('mongodb://localhost/demo');
 
 var empschema = new mongoose.Schema({
     name: String,
@@ -8,7 +8,7 @@ var empschema = new mongoose.Schema({
 });
 
 var orderSchema = new mongoose.Schema({
-        item_id: [{type: mongoose.Schema.ObjectId, ref: 'items'}]
+        item_id: {type: mongoose.Schema.Types.ObjectId, ref: 'items'}
     });
 
 var itemSchema = new mongoose.Schema({
@@ -16,6 +16,29 @@ var itemSchema = new mongoose.Schema({
     quantity: Number
 });
 
+/*
+exports.getByItemsId = function (id) {
+    return item.statics.findById(id)
+        .then(function (item) {
+            if (item) {
+                return item;
+            }
+            const err = new APIError('item not found"', httpStatus.NOT_FOUND);
+            return Promise.reject(err);
+        });
+};
+
+exports.getByOrderId = function (id) {
+    return order.findById(id).populate('item_id').exec()
+        .then(function (order) {
+            if (order) {
+                return order;
+            }
+            const err = new APIError('order not found"', httpStatus.NOT_FOUND);
+            return Promise.reject(err);
+        });
+};
+*/
 exports.em = mongoose.model('employee', empschema);
 
 exports.order=mongoose.model('order', orderSchema);

@@ -32,5 +32,7 @@ exports.emproute= function(app){
     app.put('/employee1/',function(req,res){
         data.upempmon(req.body,res);
     });
-
+    app.get('/employee1/:str',function(req,res){
+        data.findbystring(req.params.str,res);
+    });
 };

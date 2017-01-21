@@ -140,3 +140,15 @@ exports.upempmon=function(emp,res){
             }
     });
 };
+exports.findbystring=function (st, res, next) {
+    // Option i for ignore case
+
+    empl.em.find({ "name": { "$regex": st }})
+
+        .then(function (result) {
+            return res.send(result);
+        })
+        .catch(function (e){
+            return next(e);
+        })
+}
