@@ -10,4 +10,7 @@ exports.ordroute= function(app){
     app.post('/order/1',function(req,res){
         data.inorder(req.body,res);
     });
+    app.delete('/items/:id',function(req,res){
+        data.remove(req.params.id,res);
+    });
 };
