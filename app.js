@@ -13,7 +13,7 @@ var jwt=require('jsonwebtoken');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-/*app.use('/api', function(req, res, next) {
+app.use('/api', function(req, res, next) {
     //console.log("Inside the function");
     const token = req.headers['access-token'];
     if (token) {
@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended:true}));
         res.status(403).send({ success: false, message: "Authenticate token required."});
     }
 });
-*/
+
 app.use('/',routes);
 
 app.use(function (req, res, next) {
