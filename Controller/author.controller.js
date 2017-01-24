@@ -1,21 +1,21 @@
 const Author = require("../model/author.model");
 
-
 function create(req, res, next) {
     var author = new Author();
     author.fullName = req.body.fullName;
     author.emailId = req.body.emailId;
     author.gender = req.body.gender;
     author.createdBy = res.locals.session;
-    if (req.body.profile)
-        console.log("profile:"+ req.body.profile);
-    author.profile = req.body.profile;
+    console.log(__dirname);
+    if (req.body.profile){
+        author.profile = req.body.profile;
+    }
     author.save()
         .then(function () {
             return res.json({message: "Author added."});
         })
         .catch(function (err) {
-            //return res.send(err);
+            return res.send(err);
             return next(err);
         })
 }
@@ -69,4 +69,4 @@ function update(req, res, next) {
         })
 }
 
-module.exports = { create, getAll, getById, remove, update };
+module.exports = {create, getAll, getById, remove, update };

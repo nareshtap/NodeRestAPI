@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var boom = require("boom");
+mongoose.Promise=require('bluebird');
 const httpStatus = require('http-status');
 
 const Author = new Schema({

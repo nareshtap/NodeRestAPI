@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var _=require('lodash');
 const passwordHash = require('password-hash');
 const httpStatus = require('http-status');
 
@@ -62,5 +63,11 @@ User.statics.getByUserId = function (userId){
             return Promise.reject(err);
         });
 };
+
+User.methods = {
+    safeModel : function () {
+        return _.omit(this.toObject(), ['password', '__v']);
+    }
+}
 
 module.exports = mongoose.model("User", User);

@@ -29,7 +29,13 @@ const userValidation = {
 router.route('/register')
     .post(validate(userValidation.registerUser),usercntr.create)
 
+    .get(usercntr.getAllUser);
+
 router.route('/login')
     .post(validate(userValidation.userLogin),usercntr.userLogin);
+
+router.route('/user/:userId')
+
+    .delete(usercntr.remove);
 
 module.exports = router;
