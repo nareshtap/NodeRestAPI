@@ -8,6 +8,7 @@ var server=require('http').Server(app);
 var expressValidation = require("express-validation");
 const httpStatus = require('http-status');
 var path=require('path');
+var jwt=require('jsonwebtoken');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -39,10 +40,8 @@ app.use(function (req, res, next) {
 
 app.use(express.static(path.join(__dirname,'./../public')));
 
-
 db.conn();
 routes.route(app);
-
 
 app.set('port',process.env.PORT || 8088);
 server.listen(app.get('port'),function(){

@@ -23,16 +23,17 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, callback) {
         fileName = uuidV4() + file.originalname;
+        console.log("fiel"+file.originalname);
         req.body.profile = fileName;
         callback(null, fileName);
     }
 });
 
-var upload = multer({ storage: storage });
-
+var upload = multer({ storage: storage }).any();
+console.log(storage.filename);
 router.route('/')
 
-    .post(upload.any(), validate(authorValidation.createAuthor), authorCtrl.create)
+    .post(upload, validate(authorValidation.createAuthor), authorCtrl.create)
 
     .get(authorCtrl.getAll);
 
