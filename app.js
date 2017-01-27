@@ -31,6 +31,8 @@ app.use('/api', function(req, res, next) {
     }
 });
 
+app.use('/api', require('./route/api'));
+
 app.use('/',routes);
 
 app.use(function (req, res, next) {
@@ -43,7 +45,7 @@ app.use(express.static(path.join(__dirname,'./../public')));
 db.conn();
 routes.route(app);
 
-app.set('port',process.env.PORT || 8088);
+app.set('port',process.env.PORT || config.port);
 server.listen(app.get('port'),function(){
     console.log("Server is Listening to Port "+server.address().port);
 });
