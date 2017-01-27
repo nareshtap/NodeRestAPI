@@ -10,6 +10,10 @@ const httpStatus = require('http-status');
 var path=require('path');
 var jwt=require('jsonwebtoken');
 
+require('./model/contact');
+var mongoose = require('mongoose'),
+    Contact = mongoose.model('Contact');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -31,16 +35,28 @@ app.use('/api', function(req, res, next) {
     }
 });
 
-app.use('/api', require('./route/api'));
-
 app.use('/',routes);
+app.use(express.static(__dirname + '/app'));
+
+app.post('/api',function(req, res, next) {
+    var contact = new Contact({
+        fname: req.body.fname,
+        lname: req.body.lname
+    });
+    contact.save(function(err, data) {
+        if(err) {
+            return next(err);
+        }
+        res.status(201).json(data);
+    });
+});
 
 app.use(function (req, res, next) {
     //console.log("inside not found");
     return res.status(404).json({ success: false, message: 'API not found.' });
 });
 
-app.use(express.static(path.join(__dirname,'./../public')));
+
 
 db.conn();
 routes.route(app);
