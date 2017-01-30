@@ -7,7 +7,9 @@ var router = express.Router();
 var bookRoute = require("./book.route");
 var userRoute = require("./user.route");
 var authorRoute = require("./author.route");
-//var authcontl = require('../controllers/authenatication.controller');
+var path=require('path');
+
+
 
 exports.route= function(app){
 

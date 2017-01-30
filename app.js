@@ -5,10 +5,10 @@ var config = require('./config');
 var db=require("./db");
 var routes=require("./route/routes");
 var server=require('http').Server(app);
-var expressValidation = require("express-validation");
-const httpStatus = require('http-status');
 var path=require('path');
 var jwt=require('jsonwebtoken');
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -31,16 +31,17 @@ app.use('/api', function(req, res, next) {
     }
 });
 
-app.use('/api', require('./route/api'));
-
 app.use('/',routes);
 
-app.use(function (req, res, next) {
+
+
+
+
+app.use(function (req, res) {
     //console.log("inside not found");
     return res.status(404).json({ success: false, message: 'API not found.' });
 });
 
-app.use(express.static(path.join(__dirname,'./../public')));
 
 db.conn();
 routes.route(app);
