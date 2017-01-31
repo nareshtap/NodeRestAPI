@@ -17,7 +17,5 @@ angular.module("delete", []).config(function($stateProvider) {
         }, function(reject){
             $state.go('home');
         });
-        
-        
     }
 });

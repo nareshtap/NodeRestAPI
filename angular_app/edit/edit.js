@@ -19,8 +19,6 @@ angular.module("edit", []).config(function($stateProvider) {
         }, function(reject){
             $state.go('home');
         });
-       
-        
     }
 });
 
