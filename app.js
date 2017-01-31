@@ -7,33 +7,35 @@ var routes=require("./route/routes");
 var server=require('http').Server(app);
 var path=require('path');
 var jwt=require('jsonwebtoken');
+var empl=require("./model/mongo");
 
-
-
+routes.route(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use('/api', function(req, res, next) {
-    //console.log("Inside the function");
-    const token = req.headers['access-token'];
-    if (token) {
-        jwt.verify(token, config.jwtSecretKey, function (err, decoded) {
+app.get('/employee1',function(req,res){
+
+        empl.em.find(function (err, result) {
             if (err) {
-                res.send({ success: false, message: "Authentication failed.", error: err });
-            }else {
-                //console.log(decoded.userId);
-                res.locals.session = decoded.userId;
-                next();
+
             }
-        })
-    }else {
-        res.status(403).send({ success: false, message: "Authenticate token required."});
-    }
+            else {
+
+                res.send({'data':result});
+
+            }
+        });
 });
 
-app.use('/',routes);
+//app.use('/',routes);
 
 
+
+app.post('/editemployee', employeeModule.employeeEditMethod);
+
+app.post('/addemployee', employeeModule.employeeAddMethod);
+
+app.delete('/deleteemployee/:_id',employeeModule.employeeDeleteMethod);
 
 
 
@@ -44,7 +46,7 @@ app.use(function (req, res) {
 
 
 db.conn();
-routes.route(app);
+
 
 app.set('port',process.env.PORT || config.port);
 server.listen(app.get('port'),function(){
