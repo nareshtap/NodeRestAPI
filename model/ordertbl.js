@@ -15,6 +15,28 @@ exports.getorder=function(id,res,next){
             })
     }
 };
+exports.getcity=function(id,res,next){
+        ord.city.find({})
+            .then(function (result) {
+                return res.send(result);
+            })
+            .catch(function (e) {
+                return next(e);
+            })
+};
+exports.getstate=function(req,res,next){
+    console.log('statf');
+
+        ord.state.find({})
+            .then(function (result) {
+                console.log(result);
+                return res.send(JSON.stringify(result));
+            })
+            .catch(function (e) {
+                return next(e);
+            })
+
+};
 exports.initem=function(emp,res){
     var Emp=ord.item();
     Emp.price=emp.price;
@@ -41,6 +63,18 @@ exports.inorder=function(emp,res){
         }
     });
 };
+
+exports.register=function(emp,res){
+     new ord.reg(emp).save(function(err){
+        if(err){
+            res.send({status:0,message:"Insert failed"});
+        }
+        else{
+            res.send({status: 1,message:"Insert Success"});
+        }
+    });
+};
+
 exports.remove=function(id, res, next) {
     ord.item.findById(id).then(function (item) {
         if (item) {

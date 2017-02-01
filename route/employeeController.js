@@ -10,6 +10,7 @@ exports.employeeListMethod =  function(req, res){
 
                 }
                 else {
+                	console.log('sdhf');
                     res.send({'data':result});
                 }
             });

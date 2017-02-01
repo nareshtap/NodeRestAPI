@@ -35,4 +35,5 @@ exports.emproute= function(app){
     app.get('/employee1/:str',function(req,res){
         data.findbystring(req.params.str,res);
     });
+
 };
