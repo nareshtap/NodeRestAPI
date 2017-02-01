@@ -22,7 +22,7 @@ exports.route= function(app){
     order.ordroute(app);
 
 };
-
+/*
 router.use('/api/books', bookRoute);
 
 router.use('/auth', userRoute);
@@ -30,3 +30,4 @@ router.use('/auth', userRoute);
 router.use('/api/authors', authorRoute);
 
 module.exports = router;
+    */

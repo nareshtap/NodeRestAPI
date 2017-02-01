@@ -13,6 +13,27 @@ var orderSchema = new mongoose.Schema({
         item_id: {type: mongoose.Schema.Types.ObjectId, ref: 'items'}
     });
 
+
+var regSchema = new mongoose.Schema({
+    name : { type:String },
+    image : { type:String },
+    email : { type:String },
+    status : { type:String },
+    state : { type:String },
+    city : {type:String},
+    gender : { type:String }
+});
+var stateschema=new mongoose.Schema({
+    Id: {type: Number },
+    state: {type: String }
+});
+
+var cityschema=new mongoose.Schema({
+    Id:{type: Number},
+    city:{type:String},
+    stateId:{type:String}
+});
+
 var itemSchema = new mongoose.Schema({
     price: Number,
     quantity: Number
@@ -21,6 +42,12 @@ var itemSchema = new mongoose.Schema({
 exports.em = mongoose.model('employees', empschema);
 
 exports.order=mongoose.model('order', orderSchema);
+
+exports.city=mongoose.model('city', cityschema);
+
+exports.state=mongoose.model('state', stateschema);
+
+exports.reg=mongoose.model('registers', regSchema);
 
 exports.item=mongoose.model('items', itemSchema);
 
