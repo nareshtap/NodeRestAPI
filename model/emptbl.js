@@ -1,5 +1,5 @@
 var db=require('../db');
-var empl=require('./mongo');
+var empl=require('./mongo.js');
 
 exports.getemp = function(id,res) {
     db.connect(function(err, con) {
